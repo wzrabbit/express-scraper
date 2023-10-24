@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch-commonjs');
+const cors = require('cors');
 
 const router = express.Router();
 
@@ -44,7 +45,7 @@ const fetchRating = async (user) => {
   }
 };
 
-router.get('/rating', async (req, res, next) => {
+router.get('/rating', cors(), async (req, res, next) => {
   const user = req.query.user ?? '';
   const data = await fetchRating(user);
   res.send(data);
